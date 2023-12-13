@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "849855167931",
+    "firebase_url": "https://ohtomi-c2d13.firebaseio.com",
+    "project_id": "ohtomi-c2d13",
+    "storage_bucket": "ohtomi-c2d13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849855167931:android:b62357586ecfbc8820589e",
+        "android_client_info": {
+          "package_name": "jp.ac.kyusanu.ohtomi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849855167931-6a6m1olc74uqkptc3mepn6ofm38384gp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF1at3hx2cGhmeHPD6Niw-W_h_RldGC7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849855167931-6a6m1olc74uqkptc3mepn6ofm38384gp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

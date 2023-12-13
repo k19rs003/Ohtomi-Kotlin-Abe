@@ -1,0 +1,8 @@
+<resources>
+    <string name="foreground_service_notification_id">foreground_service_notification_id</string>
+    <string name="app_name">大富</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="todo">TODO</string>
+    <string name="preferences_key">OhtomiImei</string>
+</resources>

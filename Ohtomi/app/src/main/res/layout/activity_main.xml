@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFC107"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+    <TextView
+            android:id="@+id/version_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd" />
+
+    <ImageView
+            android:id="@+id/motto_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/motto" />
+
+    <TextView
+            android:id="@+id/communication_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd" />
+
+    <TextView
+            android:id="@+id/gps_gap_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd" />
+
+    <TextView
+            android:id="@+id/information_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <Button
+                android:id="@+id/stop_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"
+                android:text="@string/stop"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+
+        <Button
+                android:id="@+id/start_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="@string/start"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+    </LinearLayout>
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/todo"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/back" />
+</LinearLayout>
