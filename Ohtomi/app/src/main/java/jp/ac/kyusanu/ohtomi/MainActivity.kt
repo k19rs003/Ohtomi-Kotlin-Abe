@@ -333,6 +333,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         requestCode: Int,
         permissions: Array<String>, grantResults: IntArray
     ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         if (requestCode == REQUEST_MULTI_PERMISSIONS) {
             if (grantResults.isNotEmpty()) {
