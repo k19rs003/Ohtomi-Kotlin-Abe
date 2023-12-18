@@ -10,6 +10,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.res.Resources
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
@@ -25,6 +28,9 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.os.Build
 import android.os.StrictMode
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import com.google.android.gms.wearable.MessageClient
 import com.google.android.gms.wearable.Wearable
 import com.google.firebase.messaging.FirebaseMessaging
@@ -89,6 +95,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -98,6 +105,19 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         setTextView()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        /// レイアウトXMLからメニュー実装
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.option_menu, menu)
+        val item = menu.findItem(R.id.action_sensor)
+        item.icon?.apply {
+            mutate() // Drawableを変更可能にする
+            colorFilter = PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN) // アイコンを白くする
+        }
+        return true
+    }
+
+
     private fun setTextView() {
 
         communicationTextView = binding.communicationTextView
@@ -106,6 +126,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     @SuppressLint("SetTextI18n")
+
     private fun setup() {
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
@@ -405,5 +426,15 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             heartRateCount += 1
             Toast.makeText(this, data, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_sensor -> {
+            intent = Intent(this, Co2Activity::class.java)
+            startActivity(intent)
+            true
+        }
+
+        else -> super.onOptionsItemSelected(item)
     }
 }

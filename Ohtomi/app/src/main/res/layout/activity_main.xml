@@ -76,4 +76,5 @@
             android:contentDescription="@string/todo"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/back" />
+
 </LinearLayout>
