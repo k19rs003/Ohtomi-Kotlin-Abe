@@ -3,6 +3,7 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">133.17.165.177</domain>
         <domain includeSubdomains="true">133.17.165.165</domain>
+        <domain includeSubdomains="true">ksu.apps.kyusan-u.ac.jp</domain>
     </domain-config>
 </network-security-config>
 

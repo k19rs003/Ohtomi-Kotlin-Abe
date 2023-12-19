@@ -23,7 +23,7 @@
 
             <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="64dp"
+                    android:layout_width="32dp"
                     android:layout_height="64dp"
                     android:layout_weight="1"
                     android:src="@drawable/penguin" />
@@ -35,7 +35,7 @@
                     android:gravity="center_vertical"
                     android:text="----"
                     android:textColor="#000000"
-                    android:textSize="34sp" />
+                    android:textSize="24sp" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,7 +57,7 @@
 
                 <ImageView
                         android:id="@+id/temperature_image_view"
-                        android:layout_width="72dp"
+                        android:layout_width="64dp"
                         android:layout_height="72dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="2dp"
