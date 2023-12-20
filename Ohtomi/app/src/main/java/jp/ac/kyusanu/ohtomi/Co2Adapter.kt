@@ -38,7 +38,7 @@ class Co2Adapter(private val context: Context, private val arrayList: ArrayList<
         }
 
 
-        binding.locationTextView.text = arrayList[position].location
+//        binding.locationTextView.text = arrayList[position].location
         binding.temperatureTextView.text = context.getString(R.string.temperature_data, arrayList[position].temperature)
 
         if (arrayList[position].temperature.toDouble() <= 5) {

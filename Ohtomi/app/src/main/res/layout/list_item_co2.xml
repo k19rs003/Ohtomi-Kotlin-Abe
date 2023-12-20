@@ -31,12 +31,13 @@
 
             <TextView
                     android:id="@+id/location_text_view"
-                    android:layout_width="wrap_content"
+                    android:layout_width="328dp"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:text="@string/no_data"
                     android:textColor="#000000"
-                    android:textSize="24sp" />
+                    android:textSize="64px"
+                    tools:ignore="PxUsage" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,7 +82,8 @@
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.5" />
+                        app:layout_constraintVertical_bias="0.5"
+                        tools:ignore="PxUsage" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -109,11 +111,12 @@
                     android:gravity="center"
                     android:text="@string/no_data"
                     android:textColor="#000000"
-                    android:textSize="16sp"
+                    android:textSize="48px"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView4"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5" />
+                    app:layout_constraintVertical_bias="0.5"
+                    tools:ignore="PxUsage" />
 
             <TextView
                     android:id="@+id/system_version_text_view"
@@ -121,8 +124,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="2dp"
                     android:layout_marginBottom="2dp"
+                    android:textSize="32px"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="PxUsage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
