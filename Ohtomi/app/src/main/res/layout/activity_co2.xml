@@ -41,7 +41,12 @@
             <ListView
                     android:id="@+id/list_view"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@color/LightBlue"
+                    android:clipToPadding="false"
+                    android:divider="@null"
+                    android:dividerHeight="16dp"
+                    android:padding="8dp"/>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>
