@@ -1,6 +1,7 @@
 package jp.ac.kyusanu.ohtomi
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -8,6 +9,7 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import jp.ac.kyusanu.ohtomi.databinding.ActivityCo2Binding
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
@@ -57,11 +59,31 @@ class Co2Activity : AppCompatActivity() {
         setContentView(binding.root)
 
         setup()
+        setupOnRefreshListeners()
         getContents()
+        setupSearchView()
     }
 
     private  fun setup() {
         supportActionBar?.title = "温度モニター"
+    }
+
+    private fun setupOnRefreshListeners() {
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            getContents()
+            // Search Viewの行をクリア
+//            binding.searchView.setQuery("", true)
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
+
+//        binding.listView.setOnItemClickListener { _, _, position, _ ->
+//            intent = Intent(this, Co2DetailActivity::class.java)
+//            intent.putParcelableArrayListExtra("RESULT_LIST", resultList)
+//            intent.putExtra("POSITION", position)
+//            Log.d("[get] co2 RESULT: A", resultList[0].location)
+//            startActivity(intent)
+//        }
     }
 
     private fun getContents() {
@@ -152,6 +174,56 @@ class Co2Activity : AppCompatActivity() {
             }
         })
 
+    }
+
+    private fun setupSearchView() {
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                val regex = Regex(newText.toString())
+                resultList.clear()
+
+                // 検索時は，キャッシュした値を使用
+                val sharedPreferences = getSharedPreferences("ohtomi", Context.MODE_PRIVATE)
+                val contents = sharedPreferences?.getString("co2Contents", "[]")
+                Log.d("[get] co2Contents: ", contents!!)
+
+                // JSONデコード
+                val json = contents.let {
+                    format.decodeFromString(
+                        ListSerializer(Container.serializer()),
+                        it
+                    )
+                }
+
+                for (i in json.indices) {
+                    if (regex.containsMatchIn(json[i].location)) {
+
+                        resultList.add(
+                            Co2List(
+                                json[i].location,
+                                json[i].co2,
+                                json[i].temperature,
+                                json[i].humidity,
+                                json[i].pressure,
+                                json[i].build,
+                                json[i].systemVersion,
+                                json[i].modified
+                            )
+                        )
+                    }
+                }
+
+                binding.listView.adapter =
+                    Co2Adapter(this@Co2Activity, resultList)
+                return true
+            }
+        })
     }
 
 }

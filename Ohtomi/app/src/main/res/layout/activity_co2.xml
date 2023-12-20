@@ -27,7 +27,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:queryHint="検索（教室，ICTなど）"
+                app:queryHint="検索したい場所を入れてください"
                 app:searchHintIcon="@null" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -45,7 +45,7 @@
                     android:background="@color/LightBlue"
                     android:clipToPadding="false"
                     android:divider="@null"
-                    android:dividerHeight="16dp"
+                    android:dividerHeight="8dp"
                     android:padding="8dp"/>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

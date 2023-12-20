@@ -37,25 +37,20 @@ class Co2Adapter(private val context: Context, private val arrayList: ArrayList<
             convertView.tag as ListItemCo2Binding
         }
 
-        val co2Int: Int = (arrayList[position].co2).toInt()
-//        when {
-//            co2Int >= 1536 -> binding.alertImageView.setImageResource(R.drawable.co2_alert4)
-//            co2Int >= 1024 -> binding.alertImageView.setImageResource(R.drawable.co2_alert3)
-//            co2Int >= 768 -> binding.alertImageView.setImageResource(R.drawable.co2_alert2)
-//            else -> binding.alertImageView.setImageResource(R.drawable.co2_alert1)
-//        }
 
         binding.locationTextView.text = arrayList[position].location
-//        binding.co2TitleTextView.text = context.getString(R.string.co2_title)
-//        binding.co2DataTextView.text = context.getString(R.string.co2_data, arrayList[position].co2)
-//        binding.temperatureTitleTextView.text = context.getString(R.string.temperature_title)
-//        binding.temperatureDataTextView.text = context.getString(R.string.temperature_data, arrayList[position].temperature)
-//        binding.humidityTitleTextView.text = context.getString(R.string.humidity_title)
-//        binding.humidityDataTextView.text = context.getString(R.string.humidity_data, arrayList[position].humidity)
-//        binding.pressureTitleTextView.text = context.getString(R.string.pressure_title)
-//        binding.pressureDataTextView.text = context.getString(R.string.pressure_data, arrayList[position].pressure)
-//        binding.dateTextView.text = arrayList[position].modified
-//        binding.systemVersionTextView.text = context.getString(R.string.system_version, arrayList[position].systemVersion, arrayList[position].build)
+        binding.temperatureTextView.text = context.getString(R.string.temperature_data, arrayList[position].temperature)
+
+        if (arrayList[position].temperature.toDouble() <= 5) {
+            binding.temperatureImageView.setImageResource(R.drawable.blue_temperature)
+        } else if (arrayList[position].temperature.toDouble() >= 15){
+            binding.temperatureImageView.setImageResource(R.drawable.orange_temperature)
+        } else {
+            binding.temperatureImageView.setImageResource(R.drawable.green_temperature)
+        }
+
+        binding.timeTextView.text = arrayList[position].modified
+        binding.systemVersionTextView.text = context.getString(R.string.system_version, arrayList[position].systemVersion, arrayList[position].build)
 
         return binding.root
     }
