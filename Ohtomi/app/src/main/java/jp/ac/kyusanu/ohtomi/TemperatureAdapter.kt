@@ -40,6 +40,8 @@ class Co2Adapter(private val context: Context, private val arrayList: ArrayList<
 
         binding.locationTextView.text = arrayList[position].location
         binding.temperatureTextView.text = context.getString(R.string.temperature_data, arrayList[position].temperature)
+        binding.humidityTextView.text = context.getString(R.string.humidity_data, arrayList[position].humidity)
+        binding.pressureTextView.text = context.getString(R.string.pressure_data, arrayList[position].pressure)
 
         if (arrayList[position].temperature.toDouble() <= 5) {
             binding.temperatureImageView.setImageResource(R.drawable.blue_temperature)
