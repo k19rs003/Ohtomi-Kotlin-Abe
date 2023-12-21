@@ -431,7 +431,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_sensor -> {
-            intent = Intent(this, Co2Activity::class.java)
+            intent = Intent(this, TemperatureActivity::class.java)
             startActivity(intent)
             true
         }

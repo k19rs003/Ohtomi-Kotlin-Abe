@@ -10,14 +10,14 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import jp.ac.kyusanu.ohtomi.databinding.ActivityCo2Binding
+import jp.ac.kyusanu.ohtomi.databinding.ActivityTemperatureBinding
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import okhttp3.*
 import java.io.IOException
 
-class Co2Activity : AppCompatActivity() {
+class TemperatureActivity : AppCompatActivity() {
 
     private val format = Json {
         isLenient = true
@@ -26,7 +26,7 @@ class Co2Activity : AppCompatActivity() {
         allowSpecialFloatingPointValues = true
     }
 
-    private var _binding: ActivityCo2Binding? = null
+    private var _binding: ActivityTemperatureBinding? = null
     private val binding get() = _binding!!
 
     // JSON使うときの宣言
@@ -55,7 +55,7 @@ class Co2Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityCo2Binding.inflate(layoutInflater)
+        _binding = ActivityTemperatureBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setup()
@@ -77,13 +77,14 @@ class Co2Activity : AppCompatActivity() {
             binding.swipeRefreshLayout.isRefreshing = false
         }
 
-//        binding.listView.setOnItemClickListener { _, _, position, _ ->
-//            intent = Intent(this, Co2DetailActivity::class.java)
-//            intent.putParcelableArrayListExtra("RESULT_LIST", resultList)
-//            intent.putExtra("POSITION", position)
-//            Log.d("[get] co2 RESULT: A", resultList[0].location)
-//            startActivity(intent)
-//        }
+        binding.listView.setOnItemClickListener { _, _, position, _ ->
+            Log.d("aaaa","aaaa")
+            intent = Intent(this, TemperatureDetailActivity::class.java)
+            intent.putParcelableArrayListExtra("RESULT_LIST", resultList)
+            intent.putExtra("POSITION", position)
+            Log.d("[get] co2 RESULT: A", resultList[0].location)
+            startActivity(intent)
+        }
     }
 
     private fun getContents() {
@@ -147,8 +148,8 @@ class Co2Activity : AppCompatActivity() {
                 // listView表示
                 handler.post(kotlinx.coroutines.Runnable {
                     binding.listView.adapter =
-                        Co2Adapter(this@Co2Activity, arrayList)
-                    Toast.makeText(this@Co2Activity, "更新しました", Toast.LENGTH_SHORT).show()
+                        Co2Adapter(this@TemperatureActivity, arrayList)
+                    Toast.makeText(this@TemperatureActivity, "更新しました", Toast.LENGTH_SHORT).show()
                 })
 
                 binding.progressBar.visibility = View.INVISIBLE
@@ -220,7 +221,7 @@ class Co2Activity : AppCompatActivity() {
                 }
 
                 binding.listView.adapter =
-                    Co2Adapter(this@Co2Activity, resultList)
+                    Co2Adapter(this@TemperatureActivity, resultList)
                 return true
             }
         })

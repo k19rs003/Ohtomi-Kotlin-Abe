@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import jp.ac.kyusanu.ohtomi.databinding.ListItemCo2Binding
+import jp.ac.kyusanu.ohtomi.databinding.ListItemTemperatureBinding
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -30,11 +30,11 @@ class Co2Adapter(private val context: Context, private val arrayList: ArrayList<
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         val binding = if (convertView == null) {
-            val binding = ListItemCo2Binding.inflate(layoutInflater)
+            val binding = ListItemTemperatureBinding.inflate(layoutInflater)
             binding.root.tag = binding
             binding
         } else {
-            convertView.tag as ListItemCo2Binding
+            convertView.tag as ListItemTemperatureBinding
         }
 
 
