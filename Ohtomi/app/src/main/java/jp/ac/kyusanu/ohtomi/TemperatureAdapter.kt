@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import jp.ac.kyusanu.ohtomi.databinding.ListItemTemperatureBinding
 import kotlinx.android.parcel.Parcelize
+import kotlin.math.roundToInt
 
 @Parcelize
 class Co2List(
@@ -41,7 +42,8 @@ class Co2Adapter(private val context: Context, private val arrayList: ArrayList<
         binding.locationTextView.text = arrayList[position].location
         binding.temperatureTextView.text = context.getString(R.string.temperature_data, arrayList[position].temperature)
         binding.humidityTextView.text = context.getString(R.string.humidity_data, arrayList[position].humidity)
-        binding.pressureTextView.text = context.getString(R.string.pressure_data, arrayList[position].pressure)
+        binding.pressureTextView.text = context.getString(R.string.pressure_data, (arrayList[position].pressure.toDouble()
+            .roundToInt()).toString())
 
         if (arrayList[position].temperature.toDouble() <= 5) {
             binding.temperatureImageView.setImageResource(R.drawable.blue_temperature)
