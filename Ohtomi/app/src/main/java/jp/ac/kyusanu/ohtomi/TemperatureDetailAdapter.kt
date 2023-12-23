@@ -14,6 +14,9 @@ import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import jp.ac.kyusanu.ohtomi.databinding.ListItemTemperatureDetailBinding
 import kotlinx.android.parcel.Parcelize
@@ -53,6 +56,7 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
         }
 
         setupLineChart(binding.lineChart)
+        setDataToLineChart(binding.lineChart)
 
         return binding.root
     }
@@ -123,6 +127,43 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
                 ""
             }
         }
+    }
+
+    private fun setDataToLineChart(lineChart: LineChart) {
+        //now draw bar chart with dynamic data
+        val entries: ArrayList<Entry> = ArrayList()
+
+        chartList = getScoreList()
+
+        //you can replace this data object with  your custom object
+        for (i in chartList.indices) {
+            val score = chartList[i]
+            entries.add(Entry(i.toFloat(), score.score.toFloat()))
+        }
+
+        val lineDataSet = LineDataSet(entries, "")
+//        lineDataSet.color = Color.RED
+        lineDataSet.valueTextSize = 12f
+        lineDataSet.valueTextColor = Color.WHITE
+        lineDataSet.lineWidth = 10f
+//        lineDataSet.formLineWidth = 30f
+        lineDataSet.highlightLineWidth = 10f
+
+        val data = LineData(lineDataSet)
+        lineChart.data = data
+
+        lineChart.invalidate()
+    }
+
+    // simulate api call
+    // we are initialising it directly
+    private fun getScoreList(): ArrayList<ChartData> {
+
+        for (i in arrayList.indices) {
+            chartList.add(ChartData("", arrayList[i].co2.toInt()))
+        }
+
+        return chartList
     }
 
 }
