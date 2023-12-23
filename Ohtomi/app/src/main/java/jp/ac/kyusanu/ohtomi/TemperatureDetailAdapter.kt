@@ -42,9 +42,6 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
             convertView.tag as ListItemTemperatureDetailBinding
         }
 
-        for (i in arrayList.indices) {
-            chartList.add(ChartData("", arrayList[i].co2.toInt()))
-        }
 
         setupLineChart(binding.lineChart)
         setDataToLineChart(binding.lineChart)
