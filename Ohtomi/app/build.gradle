@@ -106,6 +106,9 @@ dependencies {
     wearApp project(':ohtomi-wear')
     implementation 'com.google.android.gms:play-services-wearable:18.1.0'
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+
+    // Charts（Temperatureで使ってる）
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
 apply plugin: 'com.google.gms.google-services'
 apply plugin: "kotlinx-serialization"
