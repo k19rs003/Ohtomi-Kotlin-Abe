@@ -2,19 +2,24 @@ package jp.ac.kyusanu.ohtomi
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import jp.ac.kyusanu.ohtomi.databinding.ActivityTemperatureBinding
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
-import okhttp3.*
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
 import java.io.IOException
 
 class TemperatureActivity : AppCompatActivity() {
@@ -78,7 +83,6 @@ class TemperatureActivity : AppCompatActivity() {
         }
 
         binding.listView.setOnItemClickListener { _, _, position, _ ->
-            Log.d("aaaa","aaaa")
             intent = Intent(this, TemperatureDetailActivity::class.java)
             intent.putParcelableArrayListExtra("RESULT_LIST", resultList)
             intent.putExtra("POSITION", position)

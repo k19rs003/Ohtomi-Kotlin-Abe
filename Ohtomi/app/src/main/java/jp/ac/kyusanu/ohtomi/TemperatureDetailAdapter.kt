@@ -3,7 +3,6 @@ package jp.ac.kyusanu.ohtomi
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -19,25 +18,13 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import jp.ac.kyusanu.ohtomi.databinding.ListItemTemperatureDetailBinding
-import kotlinx.android.parcel.Parcelize
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import kotlin.math.roundToInt
-
-@Parcelize
-class TemperatureList(
-    var location: String,
-    var co2: String,
-    var temperature: String,
-    var humidity: String,
-    var pressure: String,
-    var build: String,
-    var systemVersion: String,
-    var created: String
-) : Parcelable
 
 
-class TemperatureDetailAdapter(private val context: Context, private val arrayList: ArrayList<TemperatureList>) : BaseAdapter() {
+
+
+class TemperatureDetailAdapter(private val context: Context, private val arrayList: ArrayList<Co2List>) : BaseAdapter() {
 
     private val layoutInflater: LayoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -55,6 +42,10 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
             convertView.tag as ListItemTemperatureDetailBinding
         }
 
+        for (i in arrayList.indices) {
+            chartList.add(ChartData("", arrayList[i].co2.toInt()))
+        }
+
         setupLineChart(binding.lineChart)
         setDataToLineChart(binding.lineChart)
 
@@ -62,7 +53,7 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
     }
 
     override fun getItem(position: Int): Any {
-        return arrayList[position]
+        return 1
     }
 
     override fun getItemId(position: Int): Long {
@@ -70,7 +61,7 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
     }
 
     override fun getCount(): Int {
-        return 3
+        return 1
     }
 
     private fun setupLineChart(lineChart: LineChart) {
@@ -115,7 +106,7 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
 
             return if (index < chartList.size) {
 
-                val parsedDateTime = dateTime.parse(arrayList[index].created, "yyyy-MM-dd HH:mm:ss")
+                val parsedDateTime = dateTime.parse(arrayList[index].modified, "yyyy-MM-dd HH:mm:ss")
                 val timeString = dateTime.format(parsedDateTime, "HH:mm")
                 Log.d("[get] co2 created: ", timeString)
                 Log.d("[get] co2 created index: ", index.toString())
