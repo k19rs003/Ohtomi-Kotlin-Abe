@@ -148,7 +148,7 @@ class TemperatureActivity : AppCompatActivity() {
                 // listView表示
                 handler.post(kotlinx.coroutines.Runnable {
                     binding.listView.adapter =
-                        Co2Adapter(this@TemperatureActivity, arrayList)
+                        TemperatureAdapter(this@TemperatureActivity, arrayList)
                     Toast.makeText(this@TemperatureActivity, "更新しました", Toast.LENGTH_SHORT).show()
                 })
 
@@ -221,7 +221,7 @@ class TemperatureActivity : AppCompatActivity() {
                 }
 
                 binding.listView.adapter =
-                    Co2Adapter(this@TemperatureActivity, resultList)
+                    TemperatureAdapter(this@TemperatureActivity, resultList)
                 return true
             }
         })

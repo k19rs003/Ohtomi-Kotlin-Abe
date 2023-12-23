@@ -23,7 +23,7 @@ class Co2List(
 ) : Parcelable
 
 
-class Co2Adapter(private val context: Context, private val arrayList: ArrayList<Co2List>) : BaseAdapter() {
+class TemperatureAdapter(private val context: Context, private val arrayList: ArrayList<Co2List>) : BaseAdapter() {
 
     private val layoutInflater: LayoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
