@@ -125,29 +125,32 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
         val entries: ArrayList<Entry> = ArrayList()
 
         if (position == 0 ) {
-            chartList1 = getScoreList(position)
 
+            chartList1 = getScoreList(position)
 
             for (i in chartList1.indices) {
                 val score = chartList1[i]
                 entries.add(Entry(i.toFloat(), score.score.toFloat()))
             }
-        } else if (position == 1) {
-            chartList2 = getScoreList(position)
 
+        } else if (position == 1) {
+
+            chartList2 = getScoreList(position)
 
             for (i in chartList2.indices) {
                 val score = chartList2[i]
                 entries.add(Entry(i.toFloat(), score.score.toFloat()))
             }
-        } else if (position == 2) {
-            chartList3 = getScoreList(position)
 
+        } else if (position == 2) {
+
+            chartList3 = getScoreList(position)
 
             for (i in chartList3.indices) {
                 val score = chartList3[i]
                 entries.add(Entry(i.toFloat(), score.score.toFloat()))
             }
+            
         }
 
 
@@ -175,7 +178,6 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
         if (position == 0) {
 
             for (i in arrayList.indices) {
-//                chartList.add(ChartData("", arrayList[i].temperature.toDouble().roundToInt()))
                 chartList1.add(ChartData("", arrayList[i].temperature.toDouble().roundToInt()))
             }
             return chartList1
