@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.AxisBase
@@ -43,7 +42,7 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
         }
 
 
-//        setup(binding, position)
+        setup(binding, position)
         setupLineChart(binding.lineChart)
         setDataToLineChart(binding.lineChart, position)
 
@@ -65,16 +64,16 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
     private fun setup(binding: ListItemTemperatureDetailBinding ,position: Int) {
         when (position) {
             0 -> {
-                val colorValue = ContextCompat.getColor(context, R.color.temperatureColor)
-                binding.root.setBackgroundColor(colorValue)
+                binding.titleImageView.setImageResource(R.drawable.notemperature)
+                binding.titleTextView.text = "気温"
             }
             1 -> {
-                val colorValue = ContextCompat.getColor(context, R.color.humidityColor)
-                binding.root.setBackgroundColor(colorValue)
+                binding.titleImageView.setImageResource(R.drawable.humidity)
+                binding.titleTextView.text = "湿度"
             }
             2 -> {
-                val colorValue = ContextCompat.getColor(context, R.color.pressureColor)
-                binding.root.setBackgroundColor(colorValue)
+                binding.titleImageView.setImageResource(R.drawable.pressure)
+                binding.titleTextView.text = "気圧"
             }
 
         }
