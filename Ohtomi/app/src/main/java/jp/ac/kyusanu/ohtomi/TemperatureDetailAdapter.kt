@@ -56,7 +56,7 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
     }
 
     override fun getCount(): Int {
-        return 2
+        return 3
     }
 
     private fun setupLineChart(lineChart: LineChart) {
@@ -154,13 +154,19 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
 
             for (i in arrayList.indices) {
 //                chartList.add(ChartData("", arrayList[i].temperature.toDouble().roundToInt()))
-                chartList.add(ChartData("", arrayList[i].co2.toInt()))
+                chartList.add(ChartData("", arrayList[i].temperature.toDouble().roundToInt()))
             }
 
-        } else {
+        } else if (position == 1) {
 
             for (i in arrayList.indices) {
                 chartList.add(ChartData("", arrayList[i].humidity.toDouble().roundToInt()))
+            }
+
+        } else if (position == 2) {
+
+            for (i in arrayList.indices) {
+                chartList.add(ChartData("", arrayList[i].pressure.toDouble().roundToInt()))
             }
 
         }
