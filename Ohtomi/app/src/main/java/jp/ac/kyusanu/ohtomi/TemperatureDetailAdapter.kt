@@ -81,7 +81,7 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
 
     private fun setupLineChart(lineChart: LineChart) {
 
-        lineChart.setBackgroundColor(Color.BLACK)
+        lineChart.setBackgroundColor(Color.WHITE)
 //        hide grid lines
         lineChart.axisLeft.setDrawGridLines(false)
         val xAxis: XAxis = lineChart.xAxis
@@ -109,9 +109,9 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
 //        xAxis.labelRotationAngle = +90f
         xAxis.labelRotationAngle = +0f
         xAxis.textSize = 15f
-        xAxis.textColor = Color.WHITE
+        xAxis.textColor = Color.BLACK
         yAxis.textSize = 15f
-        yAxis.textColor = Color.WHITE
+        yAxis.textColor = Color.BLACK
     }
 
     inner class MyAxisFormatter : IndexAxisValueFormatter() {
@@ -150,11 +150,11 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
 
         val lineDataSet = LineDataSet(entries, "")
 //        lineDataSet.color = Color.RED
-        lineDataSet.valueTextSize = 12f
-        lineDataSet.valueTextColor = Color.WHITE
-        lineDataSet.lineWidth = 10f
+        lineDataSet.valueTextSize = 0f
+//        lineDataSet.valueTextColor = Color.BLACK
+        lineDataSet.lineWidth = 5f
 //        lineDataSet.formLineWidth = 30f
-        lineDataSet.highlightLineWidth = 10f
+        lineDataSet.highlightLineWidth = 0f
 
         val data = LineData(lineDataSet)
         lineChart.data = data
