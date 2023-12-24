@@ -87,7 +87,7 @@ class TemperatureDetailActivity : AppCompatActivity() {
 
 //        binding.progressBar.visibility = View.VISIBLE
 
-        val period = 6
+        val period = 12
         val encodedLocation = URLEncoder.encode(resultList[position].location, "utf-8")
         val baseUrl = "http://ksu.apps.kyusan-u.ac.jp:8086/co2/dbreadlocation.php"
 
