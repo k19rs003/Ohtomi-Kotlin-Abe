@@ -29,9 +29,6 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     private var chartList = ArrayList<ChartData>()
-    private var chartList1 = ArrayList<ChartData>()
-    private var chartList2 = ArrayList<ChartData>()
-    private var chartList3 = ArrayList<ChartData>()
     private val dateTime = DateTimeCtrl()
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -124,38 +121,12 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
         //now draw bar chart with dynamic data
         val entries: ArrayList<Entry> = ArrayList()
 
-        if (position == 0 ) {
+        chartList = getScoreList(position)
 
-            chartList1 = getScoreList(position)
-
-            for (i in chartList1.indices) {
-                val score = chartList1[i]
-                entries.add(Entry(i.toFloat(), score.score.toFloat()))
-            }
-
-        } else if (position == 1) {
-
-            chartList2 = getScoreList(position)
-
-            for (i in chartList2.indices) {
-                val score = chartList2[i]
-                entries.add(Entry(i.toFloat(), score.score.toFloat()))
-            }
-
-        } else if (position == 2) {
-
-            chartList3 = getScoreList(position)
-
-            for (i in chartList3.indices) {
-                val score = chartList3[i]
-                entries.add(Entry(i.toFloat(), score.score.toFloat()))
-            }
-            
+        for (i in chartList.indices) {
+            val score = chartList[i]
+            entries.add(Entry(i.toFloat(), score.score.toFloat()))
         }
-
-
-        //you can replace this data object with  your custom object
-
 
         val lineDataSet = LineDataSet(entries, "")
 //        lineDataSet.color = Color.RED
@@ -175,26 +146,25 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
     // we are initialising it directly
     private fun getScoreList(position: Int): ArrayList<ChartData> {
 
+        chartList.clear()
+
         if (position == 0) {
 
             for (i in arrayList.indices) {
-                chartList1.add(ChartData("", arrayList[i].temperature.toDouble().roundToInt()))
+                chartList.add(ChartData("", arrayList[i].temperature.toDouble().roundToInt()))
             }
-            return chartList1
 
         } else if (position == 1) {
 
             for (i in arrayList.indices) {
-                chartList2.add(ChartData("", arrayList[i].humidity.toDouble().roundToInt()))
+                chartList.add(ChartData("", arrayList[i].humidity.toDouble().roundToInt()))
             }
-            return chartList2
 
         } else if (position == 2) {
 
             for (i in arrayList.indices) {
-                chartList3.add(ChartData("", arrayList[i].pressure.toDouble().roundToInt()))
+                chartList.add(ChartData("", arrayList[i].pressure.toDouble().roundToInt()))
             }
-            return chartList3
 
         }
 
