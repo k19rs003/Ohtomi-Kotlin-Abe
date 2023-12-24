@@ -20,8 +20,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import jp.ac.kyusanu.ohtomi.databinding.ListItemTemperatureDetailBinding
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-
-
+import kotlin.math.roundToInt
 
 
 class TemperatureDetailAdapter(private val context: Context, private val arrayList: ArrayList<Co2List>) : BaseAdapter() {
@@ -42,9 +41,8 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
             convertView.tag as ListItemTemperatureDetailBinding
         }
 
-
         setupLineChart(binding.lineChart)
-        setDataToLineChart(binding.lineChart)
+        setDataToLineChart(binding.lineChart, position)
 
         return binding.root
     }
@@ -58,7 +56,7 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
     }
 
     override fun getCount(): Int {
-        return 1
+        return 2
     }
 
     private fun setupLineChart(lineChart: LineChart) {
@@ -97,37 +95,42 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
     }
 
     inner class MyAxisFormatter : IndexAxisValueFormatter() {
-
         override fun getAxisLabel(value: Float, axis: AxisBase?): String {
-            val index = value.toInt()
 
-            return if (index < chartList.size) {
-
-                val parsedDateTime = dateTime.parse(arrayList[index].modified, "yyyy-MM-dd HH:mm:ss")
-                val timeString = dateTime.format(parsedDateTime, "HH:mm")
-                Log.d("[get] co2 created: ", timeString)
-                Log.d("[get] co2 created index: ", index.toString())
-                timeString
-
-            } else {
-
-                Log.d("[get] co2 created index: ", index.toString())
-                ""
-            }
+            return "aaaa"
+//            val index = value.toInt()
+//
+//            return if (index < chartList.size) {
+//
+//                val parsedDateTime = dateTime.parse(arrayList[index].modified, "yyyy-MM-dd HH:mm:ss")
+//                val timeString = dateTime.format(parsedDateTime, "HH:mm")
+//                Log.d("[get] co2 created: ", timeString)
+//                Log.d("[get] co2 created index: ", index.toString())
+//                timeString
+//
+//            } else {
+//                Log.d("aaa!","bbbbb")
+//                Log.d("[get] co2 created index: ", index.toString())
+//                ""
+//            }
         }
     }
 
-    private fun setDataToLineChart(lineChart: LineChart) {
+    private fun setDataToLineChart(lineChart: LineChart, position: Int) {
+        Log.d("aaa!", "setDataToLineChart")
         //now draw bar chart with dynamic data
         val entries: ArrayList<Entry> = ArrayList()
 
-        chartList = getScoreList()
+        chartList = getScoreList(position)
 
-        //you can replace this data object with  your custom object
+
         for (i in chartList.indices) {
             val score = chartList[i]
             entries.add(Entry(i.toFloat(), score.score.toFloat()))
         }
+
+        //you can replace this data object with  your custom object
+
 
         val lineDataSet = LineDataSet(entries, "")
 //        lineDataSet.color = Color.RED
@@ -145,10 +148,21 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
 
     // simulate api call
     // we are initialising it directly
-    private fun getScoreList(): ArrayList<ChartData> {
+    private fun getScoreList(position: Int): ArrayList<ChartData> {
 
-        for (i in arrayList.indices) {
-            chartList.add(ChartData("", arrayList[i].co2.toInt()))
+        if (position == 0) {
+
+            for (i in arrayList.indices) {
+//                chartList.add(ChartData("", arrayList[i].temperature.toDouble().roundToInt()))
+                chartList.add(ChartData("", arrayList[i].co2.toInt()))
+            }
+
+        } else {
+
+            for (i in arrayList.indices) {
+                chartList.add(ChartData("", arrayList[i].humidity.toDouble().roundToInt()))
+            }
+
         }
 
         return chartList
