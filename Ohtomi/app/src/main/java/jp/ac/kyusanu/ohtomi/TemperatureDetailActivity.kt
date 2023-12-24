@@ -54,13 +54,9 @@ class TemperatureDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        setup()
         getExtras()
+        setup()
         getContents()
-    }
-
-    private  fun setup() {
-        supportActionBar?.title = "詳細グラフ"
     }
 
     private fun getExtras() {
@@ -81,6 +77,10 @@ class TemperatureDetailActivity : AppCompatActivity() {
 //        }
         Log.d("[get] co2 POSITION: ", position.toString())
         Log.d("[get] co2 RESULT: ", resultList[position].location)
+    }
+
+    private  fun setup() {
+        supportActionBar?.title = resultList[position].location
     }
 
     private fun getContents() {
