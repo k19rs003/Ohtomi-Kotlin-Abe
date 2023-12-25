@@ -64,7 +64,7 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
     private fun setup(binding: ListItemTemperatureDetailBinding ,position: Int) {
         when (position) {
             0 -> {
-                binding.titleImageView.setImageResource(R.drawable.notemperature)
+                binding.titleImageView.setImageResource(R.drawable.no_temperature)
                 binding.titleTextView.text = "気温"
             }
             1 -> {
