@@ -83,7 +83,7 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
 
         lineChart.setBackgroundColor(Color.WHITE)
 //        hide grid lines
-        lineChart.axisLeft.setDrawGridLines(false)
+        lineChart.axisLeft.setDrawGridLines(true)
         val xAxis: XAxis = lineChart.xAxis
         val yAxis: YAxis = lineChart.axisLeft
         xAxis.setDrawGridLines(false)
@@ -155,6 +155,7 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
         lineDataSet.lineWidth = 5f
 //        lineDataSet.formLineWidth = 30f
         lineDataSet.highlightLineWidth = 0f
+        lineDataSet.setDrawFilled(true)
 
         val data = LineData(lineDataSet)
         lineChart.data = data
@@ -168,22 +169,21 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
 
         chartList.clear()
 
-        if (position == 0) {
-
-            for (i in arrayList.indices) {
-                chartList.add(ChartData("", arrayList[i].temperature.toDouble().roundToInt()))
+        when (position) {
+            0 -> {
+                for (i in arrayList.indices) {
+                    chartList.add(ChartData("", arrayList[i].temperature.toDouble().roundToInt()))
+                }
             }
-
-        } else if (position == 1) {
-
-            for (i in arrayList.indices) {
-                chartList.add(ChartData("", arrayList[i].humidity.toDouble().roundToInt()))
+            1 -> {
+                for (i in arrayList.indices) {
+                    chartList.add(ChartData("", arrayList[i].humidity.toDouble().roundToInt()))
+                }
             }
-
-        } else if (position == 2) {
-
-            for (i in arrayList.indices) {
-                chartList.add(ChartData("", arrayList[i].pressure.toDouble().roundToInt()))
+            2 -> {
+                for (i in arrayList.indices) {
+                    chartList.add(ChartData("", arrayList[i].pressure.toDouble().roundToInt()))
+                }
             }
 
         }
