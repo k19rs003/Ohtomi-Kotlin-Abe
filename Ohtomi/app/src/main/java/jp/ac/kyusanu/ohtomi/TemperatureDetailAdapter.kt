@@ -112,6 +112,11 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
         xAxis.textColor = Color.BLACK
         yAxis.textSize = 15f
         yAxis.textColor = Color.BLACK
+
+        val markerView = SimpleMarkerView(context, R.layout.simple_marker_view)
+
+        markerView.chartView = lineChart
+        lineChart.marker = markerView
     }
 
     inner class MyAxisFormatter : IndexAxisValueFormatter() {

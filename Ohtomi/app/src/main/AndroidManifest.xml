@@ -28,6 +28,9 @@
             tools:ignore="GoogleAppIndexingWarning"
             tools:targetApi="n">
         <activity
+                android:name=".SimpleMarkerView"
+                android:exported="false" />
+        <activity
                 android:name=".TemperatureDetailActivity"
                 android:exported="false" />
         <activity
