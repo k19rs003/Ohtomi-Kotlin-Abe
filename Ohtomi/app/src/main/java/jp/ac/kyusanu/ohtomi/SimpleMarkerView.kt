@@ -11,6 +11,7 @@ class SimpleMarkerView(context: Context, layoutResource: Int) : MarkerView(conte
     private lateinit var textView: TextView
     override fun refreshContent(e: Entry?, highlight: Highlight?) {
         textView = findViewById(R.id.tvSimple)
+//        textView.text = "x=${e?.x}\\ny=${e?.y}"
         textView.text = "${e?.y}"
         super.refreshContent(e, highlight)
     }

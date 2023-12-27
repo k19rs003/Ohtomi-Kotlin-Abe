@@ -10,5 +10,8 @@
     <string name="humidity_data" translatable="false">%1$s ％</string>
     <string name="pressure_data" translatable="false">%1$s hPa</string>
     <string name="system_version" translatable="false">"Version: %1$s (%2$s)</string>
+    <string name="final_temperature_data" translatable="false">%1$s ℃（%2$s）</string>
+    <string name="final_humidity_data" translatable="false">%1$s ％（%2$s）</string>
+    <string name="final_pressure_data" translatable="false">%1$s hPa（%2$s）</string>
     <string name="no_data" translatable="false">----</string>
 </resources>

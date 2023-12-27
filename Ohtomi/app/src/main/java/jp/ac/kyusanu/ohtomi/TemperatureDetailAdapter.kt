@@ -66,14 +66,17 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
             0 -> {
                 binding.titleImageView.setImageResource(R.drawable.no_temperature)
                 binding.titleTextView.text = "気温"
+                binding.dataTextView.text = context.getString(R.string.final_temperature_data, arrayList[position].temperature, arrayList[position].modified )
             }
             1 -> {
                 binding.titleImageView.setImageResource(R.drawable.humidity)
                 binding.titleTextView.text = "湿度"
+                binding.dataTextView.text = context.getString(R.string.final_humidity_data, arrayList[position].humidity, arrayList[position].modified )
             }
             2 -> {
                 binding.titleImageView.setImageResource(R.drawable.pressure)
                 binding.titleTextView.text = "気圧"
+                binding.dataTextView.text = context.getString(R.string.final_pressure_data, arrayList[position].pressure.toDouble().roundToInt().toString(), arrayList[position].modified )
             }
 
         }
@@ -174,23 +177,22 @@ class TemperatureDetailAdapter(private val context: Context, private val arrayLi
 
         chartList.clear()
 
-        when (position) {
-            0 -> {
-                for (i in arrayList.indices) {
-                    chartList.add(ChartData("", arrayList[i].temperature.toDouble().roundToInt()))
-                }
-            }
-            1 -> {
-                for (i in arrayList.indices) {
-                    chartList.add(ChartData("", arrayList[i].humidity.toDouble().roundToInt()))
-                }
-            }
-            2 -> {
-                for (i in arrayList.indices) {
-                    chartList.add(ChartData("", arrayList[i].pressure.toDouble().roundToInt()))
-                }
-            }
+        for(index in arrayList.indices) {
+            val parsedDateTime = dateTime.parse(arrayList[index].modified, "yyyy-MM-dd HH:mm:ss")
+            val timeString = dateTime.format(parsedDateTime, "HH:mm")
 
+            when (position) {
+                0 -> {
+                    chartList.add(ChartData(timeString, arrayList[index].temperature.toDouble().roundToInt()))
+                }
+                1 -> {
+                    chartList.add(ChartData(timeString, arrayList[index].humidity.toDouble().roundToInt()))
+                }
+                2 -> {
+                    chartList.add(ChartData(timeString, arrayList[index].pressure.toDouble().roundToInt()))
+                }
+
+            }
         }
 
         return chartList
