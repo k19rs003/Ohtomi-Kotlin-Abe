@@ -2,6 +2,7 @@ package jp.ac.kyusanu.ohtomi
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import jp.ac.kyusanu.ohtomi.databinding.ActivityTemperatureDetailBinding
@@ -85,7 +86,7 @@ class TemperatureDetailActivity : AppCompatActivity() {
 
     private fun getContents() {
 
-//        binding.progressBar.visibility = View.VISIBLE
+        binding.progressBar.visibility = View.VISIBLE
 
         val period = 12
         val encodedLocation = URLEncoder.encode(resultList[position].location, "utf-8")
@@ -143,19 +144,19 @@ class TemperatureDetailActivity : AppCompatActivity() {
                     })
 //                    setDataToLineChart()
 
-//                    binding.progressBar.visibility = View.INVISIBLE
+                    binding.progressBar.visibility = View.INVISIBLE
 
                 } catch (e: Exception) {
                     Log.e("catch()", e.toString())
 
-//                    binding.progressBar.visibility = View.INVISIBLE
+                    binding.progressBar.visibility = View.INVISIBLE
                 }
             }
 
             override fun onFailure(call: Call, e: IOException) {
                 Log.e("onFailure()", e.toString())
 
-//                binding.progressBar.visibility = View.INVISIBLE
+                binding.progressBar.visibility = View.INVISIBLE
             }
         })
     }
