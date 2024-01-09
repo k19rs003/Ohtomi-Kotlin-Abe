@@ -45,9 +45,9 @@ class TemperatureAdapter(private val context: Context, private val arrayList: Ar
         binding.pressureTextView.text = context.getString(R.string.pressure_data, (arrayList[position].pressure.toDouble()
             .roundToInt()).toString())
 
-        if (arrayList[position].temperature.toDouble() <= 5) {
+        if (arrayList[position].temperature.toDouble() <= 0) {
             binding.temperatureImageView.setImageResource(R.drawable.blue_temperature)
-        } else if (arrayList[position].temperature.toDouble() >= 15){
+        } else if (arrayList[position].temperature.toDouble() >= 10){
             binding.temperatureImageView.setImageResource(R.drawable.orange_temperature)
         } else {
             binding.temperatureImageView.setImageResource(R.drawable.green_temperature)
